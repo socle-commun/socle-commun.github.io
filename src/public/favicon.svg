@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+    preserveAspectRatio="xMidYMid meet" viewBox="0 0 200 200">
+    <defs>
+        <linearGradient id="gradient" x1="0%" x2="75%" y1="0%" y2="75%">
+            <stop offset="0%" stop-color="#FF0066"></stop>
+            <stop offset="100%" stop-color="#BD34FE"></stop>
+        </linearGradient>
+    </defs>
+    <path fill="url(#gradient)" transform="translate(100 100)"
+        d="M46.4,-8.6C55.3,12.2,54.2,42.7,36.2,57.6C18.2,72.6,-16.8,71.9,-33.5,57.1C-50.2,42.4,-48.6,13.6,-40,-6.9C-31.4,-27.4,-15.7,-39.6,1.5,-40.1C18.8,-40.6,37.6,-29.4,46.4,-8.6Z" />
+</svg>
