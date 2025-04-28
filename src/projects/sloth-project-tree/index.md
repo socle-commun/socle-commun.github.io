@@ -1,97 +1,99 @@
 # 🦥 Sloth Semantics
 
-**Sloth Semantics** is a TypeScript/Deno library that analyzes the structure of a software project to extract a strong semantic layer from its directory structure.
+**Sloth Semantics** est une bibliothèque TypeScript/Deno qui analyse la
+structure d’un projet logiciel pour en extraire une sémantique forte à partir de
+son arborescence.
 
-## 📚 Objective
+## 📚 Objectif
 
-Provide a **semantic view** of a project based on:
+Fournir une **vue sémantique** d’un projet à partir de :
 
-- its file structure (`apps/`, `lib/`, `ext/`, etc.)
-- its metadata (`deno.json`, `package.json`, `README.md`)
-- its dependencies (`import`, `npm:`, `https:`...)
-- its tests (`tests/`, `__tests__`, `.test.ts` files)
-- its exports (`exports` in `package.json` or `deno.json`)
-- its unclassified files (orphans)
+- la structure de ses fichiers (`apps/`, `lib/`, `ext/`, etc.)
+- ses métadonnées (`deno.json`, `package.json`, `README.md`)
+- ses dépendances (`import`, `npm:`, `https:`...)
+- ses tests (`tests/`, `__tests__`, fichiers `.test.ts`)
+- ses exports (`exports` dans `package.json` ou `deno.json`)
+- ses fichiers non-classés (orphelins)
 
-All exposed as a unified, typed, and navigable `Project` object.
+Le tout exposé sous forme d’objet `Project` unifié, typé, navigable, enrichi.
 
-## ✅ Current Features
+## ✅ Fonctionnalités actuelles
 
-| Component                      | Status | Description                                         |
-| ------------------------------ | ------ | --------------------------------------------------- |
-| `Project` loader               | ✅     | Full loading via `$Project.load()`                  |
-| Documentation (`README.md`)    | ✅     | Accessible via `.documentation.readme`              |
-| Configurations                 | ✅     | Detects `.gitignore`, `deno.json`, `.vscode/`, etc. |
-| Scripts (`deno`, `npm`)        | ✅     | Collects declared scripts                           |
-| Dependencies                   | ✅     | Collects external imports (npm, url...)             |
-| Exports (`exports`)            | ✅     | From `deno.json` or `package.json`                  |
-| Layers (apps, apis, libs, ext) | ✅     | Auto-detection inside or outside `src/`             |
-| Tests                          | ✅     | Collects test files                                 |
-| Orphan Files                   | ✅     | Lists unintegrated files in a layer                 |
-| Git                            | ✅     | Branch, remote, staging state (if Git repo)         |
+| Composant                      | Statut | Description                                        |
+| ------------------------------ | ------ | -------------------------------------------------- |
+| `Project` loader               | ✅     | Chargement complet via `$Project.load()`           |
+| Documentation (`README.md`)    | ✅     | Accessible via `.documentation.readme`             |
+| Configurations                 | ✅     | Détecte `.gitignore`, `deno.json`, `.vscode/` etc. |
+| Scripts (`deno`, `npm`)        | ✅     | Regroupe les scripts déclarés                      |
+| Dépendances                    | ✅     | Collecte les imports externes (npm, url...)        |
+| Exports (`exports`)            | ✅     | Depuis `deno.json` ou `package.json`               |
+| Layers (apps, apis, libs, ext) | ✅     | Détection automatique dans ou hors `src/`          |
+| Tests                          | ✅     | Collecte des fichiers de test                      |
+| Fichiers orphelins             | ✅     | Liste des fichiers non intégrés dans un layer      |
+| Git                            | ✅     | Branch, remote, état de staging (si repo Git)      |
 
-## 🚀 Usage
+## 🚀 Utilisation
 
 ```ts
 import { $Project } from "mod.ts";
 
-const project = await $Project.load("./my-project");
+const project = await $Project.load("./mon-projet");
 
-// Access the structure
-console.log("Project name:", project.name);
-console.log("Environments:", project.runtimes);
-console.log("Exports:", project.exports);
+// Accès à la structure
+console.log("Nom du projet :", project.name);
+console.log("Environnements :", project.runtimes);
+console.log("Exports :", project.exports);
 ```
 
 ---
 
-## 🔍 Running Tests
+## 🔍 Exécution des tests
 
 ```bash
 deno test --allow-all
 ```
 
-The tests are organized as follows:
+Les tests sont organisés comme suit :
 
-- `xxx.test.ts`: Unit tests, close to the file being tested
-- `mod-base.test.ts`: General functional test for `$Project.load`
-- `tests/e2e/`: Coming soon for integration tests on real projects
+- `xxx.test.ts` : tests unitaires, proches du fichier testé
+- `mod-base.test.ts` : test fonctionnel général de `$Project.load`
+- `tests/e2e/` : à venir pour des tests d’intégration sur projet réel
 
-## 🧠 Project Semantics
+## 🧠 Sémantique de projet
 
-Welcome to the documentation for the **semantic model** used by `project-tree`.
+Bienvenue dans la documentation dédiée au **modèle sémantique** utilisé par `project-tree`.
 
-This module enriches the directory structure of a software project with **roles** and **semantic tags**, making it easier to:
+Ce module permet d’enrichir l’arborescence d’un projet logiciel avec des **rôles** et **tags sémantiques**, facilitant ainsi :
 
-- Analyze the code,
-- Auto-generate documentation,
-- Provide intelligent navigation,
-- Assist with AI-driven tools.
+- l’analyse du code,
+- la documentation automatique,
+- la navigation intelligente,
+- l’assistance par IA.
 
-## 📂 Table of Contents
+## 📂 Table des matières
 
-| Section                                                                 | Description                                        |
-| ----------------------------------------------------------------------- | -------------------------------------------------- |
-| [📊 Diagrams](/projects/sloth-project-tree/diagrams)                    | Class diagrams of the project                      |
-| [📖 Glossary](/projects/sloth-project-tree/glossary)                    | Definitions of key concepts used in the semantics  |
-| [🧠 Semantic Model](/projects/sloth-project-tree/semantic-model)        | Structure of the `SemanticNode` model, roles, tags |
-| [🎭 Semantic Roles](/projects/sloth-project-tree/node-roles)            | List and description of recognized business roles  |
-| [🧩 Inference Rules](/projects/sloth-project-tree/role-detection-rules) | Heuristics used to infer roles automatically       |
-| [🏷️ Semantic Tags](/projects/sloth-project-tree/semantic-tags)          | Secondary attributes to enrich file understanding  |
-| [🔧 Extensibility](/projects/sloth-project-tree/extensibility)          | Add your own roles, rules, or tags                 |
-| [📚 Use Cases](/projects/sloth-project-tree/use-cases)                  | What semantic analysis enables in a real project   |
-| [⚠️ Limitations](/projects/sloth-project-tree/limitations)              | What the system can’t (yet) do                     |
+| Section                                                                    | Description                                                       |
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [📊 Diagrammes](/projects/sloth-project-tree/diagrams)                     | Les diagrammes de classes du projet                               |
+| [📖 Glossaire](/projects/sloth-project-tree/glossary)                      | Définitions des concepts clés utilisés dans la sémantique         |
+| [🧠 Modèle sémantique](/projects/sloth-project-tree/semantic-model)        | Structure du modèle `SemanticNode`, rôles, tags                   |
+| [🎭 Rôles sémantiques](/projects/sloth-project-tree/node-roles)            | Liste et description des rôles métiers reconnus                   |
+| [🧩 Règles d’inférence](/projects/sloth-project-tree/role-detection-rules) | Heuristiques utilisées pour déduire les rôles automatiquement     |
+| [🏷️ Tags sémantiques](/projects/sloth-project-tree/semantic-tags)          | Attributs secondaires pour enrichir la compréhension des fichiers |
+| [🔧 Extensibilité](/projects/sloth-project-tree/extensibility)             | Ajouter vos propres rôles, règles ou tags                         |
+| [📚 Cas d’usage](/projects/sloth-project-tree/use-cases)                   | Ce que permet l’analyse sémantique dans un projet réel            |
+| [⚠️ Limites](/projects/sloth-project-tree/limitations)                     | Ce que le système ne sait pas (encore) faire                      |
 
-## ✨ Usage Examples
+## ✨ Exemples d’usage
 
-- Automatically group `utils.ts` files into a reusable functions array.
-- Display entry points (`main.ts`, `index.ts`) in a visual table of contents.
-- Distinguish business logic (`Service`, `Controller`) from infrastructure (`ToolBox`, `Config`).
+- Regrouper automatiquement les fichiers `utils.ts` dans un tableau de fonctions réutilisables.
+- Afficher les points d’entrée (`main.ts`, `index.ts`) dans un sommaire visuel.
+- Distinguer la logique métier (`Service`, `Controller`) de l’infrastructure (`ToolBox`, `Config`).
 
 ::: info
-This system is designed to be **simple**, **extensible**, and **interoperable** with tools like VitePress, Comet, or AI assistants.
+Ce système est conçu pour être **simple**, **extensible** et **interopérable** avec des outils comme VitePress, Comet, ou des assistants IA.
 :::
 
-## 📜 License
+## 📜 Licence
 
-Released under the [MIT License](LICENSE). Copyright © 2025 [Socle Commun](https://github.com/socle-commun) — Built with care for an accessible world.
+Publié sous la licence MIT. Copyright © 2025 [Socle Commun](https://github.com/socle-commun) — Conçu avec soin pour un monde accessible.

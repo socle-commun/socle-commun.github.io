@@ -57,4 +57,4 @@ npm run preview  # ou yarn preview
 
 ## 📜 Licence
 
-Publié sous la [Licence MIT](LICENSE). Copyright © 2025 [Socle Commun](https://github.com/socle-commun) — Conçu avec soin pour un monde accessible.
+Publié sous la licence MIT. Copyright © 2025 [Socle Commun](https://github.com/socle-commun) — Conçu avec soin pour un monde accessible.

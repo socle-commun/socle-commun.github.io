@@ -59,4 +59,4 @@ npm run preview  # or yarn preview
 
 ## 📜 License
 
-Released under the [MIT License](LICENSE). Copyright © 2025 [Socle Commun](https://github.com/socle-commun) — Built with care for an accessible world.
+Released under the MIT license. Copyright © 2025 [Socle Commun](https://github.com/socle-commun) — Built with care for an accessible world.

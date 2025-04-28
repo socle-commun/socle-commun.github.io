@@ -1,13 +1,13 @@
 # Projects
 
-We develop different projects according to our desires, here are the projects we are working on:
+Nous développons différents projets au gré de nos envies, voici les projets sur lesquels nous travaillons :
 
 ## Applications
 
-- [Simple Picto](/projects/sloth-core)
+- [Simple Picto](/projects/simple-picto/)
 
-## Development tools
+## Outils de développement
 
-- [Sloth Core](/projects/sloth-core)
-- [Sloth Import](/projects/sloth-import)
-- [Sloth Project Tree](/projects/sloth-project-tree)
+- [Sloth Core](/projects/sloth-core/)
+- [Sloth Import](/projects/sloth-import/)
+- [Sloth Project Tree](/projects/sloth-project-tree/)
