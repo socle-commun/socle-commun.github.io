@@ -28,4 +28,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.0
         with:
           branch: gh-pages # Target branch for GitHub Pages
-          folder: dist # Folder to publish from, usually 'dist' for VitePress
+          folder: .vuepress/dist # Folder to publish from, usually 'dist' for VitePress
