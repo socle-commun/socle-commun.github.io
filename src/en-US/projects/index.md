@@ -4,7 +4,7 @@ We develop different projects according to our desires, here are the projects we
 
 ## Applications
 
-- [Simple Picto](/en-US/projects/sloth-core/)
+- [Simple Picto](/en-US/projects/simple-picto/)
 
 ## Development tools
 
