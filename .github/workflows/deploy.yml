@@ -1,9 +1,8 @@
 name: Deploy VitePress to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main # Trigger deploy when pushing to the 'main' branch
+  release:
+    types: [published]
 
 permissions:
   contents: read
