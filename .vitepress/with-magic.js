@@ -26,11 +26,42 @@ export function withMagic(config) {
     const folderPath = path.join(srcRoot, folderName);
     const firstFileLink = findFirstMarkdownLink(folderPath, folderName);
 
+    const subItems = [];
+    const subEntries = fs.readdirSync(folderPath, { withFileTypes: true })
+      .filter(e => e.isDirectory())
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    subEntries.forEach(subEntry => {
+      const subFolderName = subEntry.name;
+      const subFolderPath = path.join(folderPath, subFolderName);
+      const subFirstFileLink = findFirstMarkdownLink(subFolderPath, `${folderName}/${subFolderName}`);
+
+      if (subFirstFileLink) {
+        subItems.push({
+          text: sanitizeTitle(subFolderName),
+          link: subFirstFileLink
+        });
+      }
+    });
+
     if (firstFileLink) {
-      navItems.push({
-        text: sanitizeTitle(folderName),
-        link: firstFileLink
-      });
+      let navItem;
+
+      if (subItems.length > 0) {
+        navItem = {
+          text: sanitizeTitle(folderName),
+          items: subItems
+        };
+      } else if (firstFileLink) {
+        navItem = {
+          text: sanitizeTitle(folderName),
+          link: firstFileLink
+        };
+      }
+
+      if (navItem) {
+        navItems.push(navItem);
+      }
     }
   });
 
