@@ -1,9 +1,9 @@
 name: Deploy VitePress to GitHub Pages
 
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - '**'
 
 permissions:
   contents: read
@@ -28,22 +28,3 @@ jobs:
 
       - name: Build VitePress site
         run: npm run build # Adjust if your build script is different
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .vitepress/dist # Make sure this matches your output directory
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
-    runs-on: ubuntu-latest
-    name: Deploy
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
