@@ -74,15 +74,15 @@ Ce module permet d’enrichir l’arborescence d’un projet logiciel avec des *
 
 | Section                                                                    | Description                                                       |
 | -------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [📊 Diagrammes](/projects/sloth-project-tree/diagrams)                     | Les diagrammes de classes du projet                               |
-| [📖 Glossaire](/projects/sloth-project-tree/glossary)                      | Définitions des concepts clés utilisés dans la sémantique         |
-| [🧠 Modèle sémantique](/projects/sloth-project-tree/semantic-model)        | Structure du modèle `SemanticNode`, rôles, tags                   |
-| [🎭 Rôles sémantiques](/projects/sloth-project-tree/node-roles)            | Liste et description des rôles métiers reconnus                   |
-| [🧩 Règles d’inférence](/projects/sloth-project-tree/role-detection-rules) | Heuristiques utilisées pour déduire les rôles automatiquement     |
-| [🏷️ Tags sémantiques](/projects/sloth-project-tree/semantic-tags)          | Attributs secondaires pour enrichir la compréhension des fichiers |
-| [🔧 Extensibilité](/projects/sloth-project-tree/extensibility)             | Ajouter vos propres rôles, règles ou tags                         |
-| [📚 Cas d’usage](/projects/sloth-project-tree/use-cases)                   | Ce que permet l’analyse sémantique dans un projet réel            |
-| [⚠️ Limites](/projects/sloth-project-tree/limitations)                     | Ce que le système ne sait pas (encore) faire                      |
+| [📊 Diagrammes](./diagrams)                     | Les diagrammes de classes du projet                               |
+| [📖 Glossaire](./glossary)                      | Définitions des concepts clés utilisés dans la sémantique         |
+| [🧠 Modèle sémantique](./semantic-model)        | Structure du modèle `SemanticNode`, rôles, tags                   |
+| [🎭 Rôles sémantiques](./node-roles)            | Liste et description des rôles métiers reconnus                   |
+| [🧩 Règles d’inférence](./role-detection-rules) | Heuristiques utilisées pour déduire les rôles automatiquement     |
+| [🏷️ Tags sémantiques](./semantic-tags)          | Attributs secondaires pour enrichir la compréhension des fichiers |
+| [🔧 Extensibilité](./extensibility)             | Ajouter vos propres rôles, règles ou tags                         |
+| [📚 Cas d’usage](./use-cases)                   | Ce que permet l’analyse sémantique dans un projet réel            |
+| [⚠️ Limites](./limitations)                     | Ce que le système ne sait pas (encore) faire                      |
 
 ## ✨ Exemples d’usage
 

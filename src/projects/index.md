@@ -9,5 +9,5 @@ Nous développons différents projets au gré de nos envies, voici les projets s
 ## Outils de développement
 
 - [Sloth](/projects/sloth/)
-- [Deno Rest Template](/projects/Deno-rest-template/)
-- [Sloth Project Tree](/projects/sloth-project-tree/)
+- [Deno Rest Template](/projects/deno-rest-template/)
+- [Sloth Project Tree](/projects/sloth/features/project-tree/)
