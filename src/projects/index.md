@@ -8,6 +8,6 @@ Nous développons différents projets au gré de nos envies, voici les projets s
 
 ## Outils de développement
 
-- [Sloth Core](/projects/sloth-core/)
-- [Sloth Import](/projects/sloth-import/)
+- [Sloth](/projects/sloth/)
+- [Deno Rest Template](/projects/Deno-rest-template/)
 - [Sloth Project Tree](/projects/sloth-project-tree/)
