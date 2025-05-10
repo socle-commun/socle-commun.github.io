@@ -1,78 +1,73 @@
 # 🌟 Features
 
-Bienvenue dans la section **Features** de ce projet.
+Welcome to the **Features** section of this project.
 
-Cette section regroupe toute la documentation des fonctionnalités principales du serveur Example Deno Server.  
-Vous trouverez ici une vue d’ensemble et des guides pour :
+This section groups all documentation for the core features of the Example Deno Server.
+Here you’ll find an overview and guides for:
 
-✅ Comprendre chaque feature technique  
-✅ Savoir comment ajouter une nouvelle feature documentée  
-✅ Maintenir une documentation claire et cohérente sur le long terme
-
+✅ Understanding each technical feature
+✅ Knowing how to add a new documented feature
+✅ Maintaining clear, consistent documentation over time
 
 ---
 
-## 🛠️ Ajouter une nouvelle feature
+## 🛠️ Adding a new feature
 
-Pour documenter une nouvelle fonctionnalité, suivez ce modèle :
+To document a new feature, follow this model:
 
-1️⃣ Créez un fichier Markdown dédié sous `docs/features/`  
-   → Exemple : `docs/features/ma-nouvelle-feature.md`
+1️⃣ Create a dedicated Markdown file under `docs/features/`
+→ Example: `docs/features/my-new-feature.md`
 
-2️⃣ Structurez la page selon le format suivant :
+2️⃣ Structure the page using the following format:
 
 ```markdown
-# Nom de la Feature
+# Feature Name
 
 ## 📖 Description
 
-Expliquez en une phrase ce que fait cette feature.
+Briefly explain what this feature does.
 
 ---
 
-## ⚙️ Implémentation
+## ⚙️ Implementation
 
-Détaillez :
-- Les modules/fichiers concernés
-- Les choix techniques effectués
-- Les contraintes éventuelles
-
----
-
-## 🧩 Personnalisation
-
-Indiquez comment adapter cette feature selon les besoins (variables, options, extensions).
+Detail:
+- The involved modules/files
+- The technical decisions made
+- Any relevant constraints
 
 ---
 
-## 📚 Ressources
+## 🧩 Customization
 
-[Liens utiles, documentation externe, références]
-````
+Explain how to adapt this feature (variables, options, extensions).
 
-3️⃣ Ajoutez un lien dans la sidebar :
+---
 
-Dans votre fichier de configuration `vite.config.ts` :
+## 📚 Resources
+
+[Useful links, external docs, references]
+```
+
+3️⃣ Add a link in the sidebar:
+
+In your `vite.config.ts` config file:
 
 ```js
 sidebar: {
   '/features/': [
     { text: 'Introduction', link: '/features/' },
     // ...
-    { text: 'Ma Nouvelle Feature', link: '/features/ma-nouvelle-feature' },
+    { text: 'My New Feature', link: '/features/my-new-feature' },
   ]
 }
 ```
 
 ---
 
-## 🚀 Bonnes pratiques
+## 🚀 Best practices
 
-✅ Restez synthétique mais précis
-✅ Utilisez des tableaux pour les paramètres/options
-✅ Ajoutez des exemples de code si nécessaire
-✅ Reliez toujours aux modules/fichiers concrets dans le projet
-
----
-
-> 💡 **Astuce** : Si la feature est complexe, créez un sous-dossier dédié (`/features/ma-nouvelle-feature/`) avec plusieurs pages.
+✅ Stay concise but precise
+✅ Use tables for parameters/options
+✅ Add code examples if needed
+✅ Always reference concrete modules/files in the project

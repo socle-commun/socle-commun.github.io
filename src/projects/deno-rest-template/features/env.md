@@ -1,89 +1,97 @@
-# 🌿 Environnement et Version
-
-Cette page présente la **gestion des variables d’environnement** et de la version du projet.
-
-Vous y trouverez :
-✅ Les priorités de chargement (`.env`, système, valeur par défaut)
-✅ Un tableau des variables principales utilisées
-✅ La méthode pour lire dynamiquement la version dans la documentation
-✅ La méthode recommandée pour ajouter des variables d’environnement avec typage
-
-Indispensable pour configurer vos environnements (dev, prod) et garder un projet bien aligné.
+✅ Here’s the **English version**, clean and ready for integration:
 
 ---
 
-## ⚙️ Priorité des valeurs
+# 🌿 Environment and Version
 
-1️⃣ `.env` local (en dev)
-2️⃣ `Deno.env` système (en prod)
-3️⃣ Valeur par défaut passée au code
+This page explains the **management of environment variables** and the project version.
 
----
+You will find:
+✅ Load priorities (`.env`, system, default value)
+✅ A table of main variables used
+✅ The method for dynamically reading the project version in docs
+✅ The recommended way to add typed environment variables
 
-## 📋 Variables principales
-
-| Variable       | Description                                 |
-| -------------- | ------------------------------------------- |
-| `APP_NAME`     | Nom affiché dans les logs                   |
-| `ENV`          | Environnement (`production`, `development`) |
-| `APP_PORT`     | Port d’écoute                               |
-| `APP_URL`      | URL publique                                |
-| `BEARER_TOKEN` | Token pour l’auth Bearer                    |
-| `DOC_PATH`     | Endpoint OpenAPI (par défaut `/doc`)        |
-| `UI_PATH`      | Endpoint Swagger UI (par défaut `/ui`)      |
+Essential for configuring your environments (dev, prod) and keeping the project aligned.
 
 ---
 
-## 🏷️ Version projet
+## ⚙️ Value priorities
 
-Le fichier `deno.jsonc` contient le champ `version`, lu automatiquement pour l’afficher dans la documentation.
-
-> **Astuce** : Voir la fonction `getProjectVersion()` pour comprendre le chargement dynamique.
+1️⃣ Local `.env` (in dev)
+2️⃣ System `Deno.env` (in prod)
+3️⃣ Default value passed into code
 
 ---
 
-## 🛠️ Implémentation détaillée
+## 📋 Main variables
 
-Le chargement des variables d’environnement est centralisé dans :
+| Variable       | Description                               |
+| -------------- | ----------------------------------------- |
+| `APP_NAME`     | Name displayed in logs                    |
+| `ENV`          | Environment (`production`, `development`) |
+| `APP_PORT`     | Listening port                            |
+| `APP_URL`      | Public URL                                |
+| `BEARER_TOKEN` | Bearer authentication token               |
+| `DOC_PATH`     | OpenAPI endpoint (default `/doc`)         |
+| `UI_PATH`      | Swagger UI endpoint (default `/ui`)       |
+
+---
+
+## 🏷️ Project version
+
+The `deno.jsonc` file contains the `version` field, automatically read and displayed in the documentation.
+
+> **Tip**: See the `getProjectVersion()` function to understand the dynamic loading.
+
+---
+
+## 🛠️ Detailed implementation
+
+Environment variable loading is centralized in:
 
 ```
 /ext/deno/env/mod.ts
 ```
 
-### Points clés
+### Key points
 
-✅ On utilise `std/dotenv` pour charger les valeurs locales.
-✅ Le système ignore proprement l’absence d’un fichier `.env`.
-✅ Le type `$ENV` définit toutes les clés connues.
-✅ La fonction générique `getEnv<$ENV>()` applique la priorité :
-`.env local` → `Deno.env` système → valeur par défaut.
+✅ Uses `std/dotenv` to load local values.
+✅ Cleanly ignores missing `.env` files.
+✅ The `$ENV` type defines all known keys.
+✅ The generic function `getEnv<$ENV>()` applies the priority:
+`.env local` → system `Deno.env` → default value.
 
 ---
 
-### Exemple d’utilisation
+### Usage example
 
 ```ts
 import getEnv from '@/ext/deno/env/mod.ts'
 
 type ENV = 'APP_NAME' | 'MY_NEW_KEY';
 
-// Lire une valeur existante
+// Read an existing value
 const appName = getEnv<ENV>("APP_NAME", "Unknown App")
 
-// Lire une nouvelle clé ajoutée
+// Read a newly added key
 const newFeatureFlag = getEnv<ENV>("MY_NEW_KEY", "false")
 ```
 
-✅ **Pourquoi utiliser `<ENV>` ?**
+✅ **Why use `<ENV>`?**
 
-* Fournit un typage strict pour les noms de clé.
-* Évite les erreurs de frappe.
-* Rapproche automatiquement le code et la documentation.
+* Provides strict typing for key names.
+* Avoids typos.
+* Automatically aligns code with documentation.
 
 ---
 
-✅ **Bonnes pratiques**
+✅ **Best practices**
 
-* Toujours utiliser un type `ENV` local au fichier pour référencer vos clés.
-* Ne pas utiliser `Deno.env.get()` directement.
-* Documenter chaque nouvelle variable dans `.env.example` (commentée par défaut si pertinent).
+* Always use a local `ENV` type in the file to reference your keys.
+* Do **not** use `Deno.env.get()` directly.
+* Document every new variable in `.env.example` (commented by default if appropriate).
+
+---
+
+If you want, I can package this into a `.md` file for `doc/features/`. Want me to prepare it? 📦

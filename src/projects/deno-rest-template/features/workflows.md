@@ -1,77 +1,69 @@
-Voici une version enrichie et mieux structurée pour le fichier `workflows.md` :
+# ⚙️ CI/CD Workflows
+
+This page documents the **automation workflows** used in GitHub Actions for this project.
+
+It describes:
+✅ The available workflows (`ci.yml`, `deploy.yml`)
+✅ The key steps executed (tests, linting, deployment)
+✅ How to configure and extend these workflows to fit your needs
+
+👉 Essential for understanding how your project automatically moves from **local code** to **production**.
 
 ---
 
-# Workflows CI/CD
+## 📦 Available workflows
 
-Cette page documente les **workflows d’automatisation** utilisés dans GitHub Actions pour ce projet.
-
-Elle décrit :
-✅ Les workflows disponibles (`ci.yml`, `deploy.yml`)
-✅ Les étapes clés exécutées (tests, lint, déploiement)
-✅ Comment configurer et étendre ces workflows selon vos besoins
-
-👉 Indispensable pour comprendre comment votre projet passe automatiquement du **code local** à la **production**.
-
----
-
-## 📦 Workflows disponibles
-
-| Fichier                        | Rôle                                                     |
-| ------------------------------ | -------------------------------------------------------- |
-| `.github/workflows/ci.yml`     | Exécute les tests, lint et vérifications sur chaque push |
-| `.github/workflows/deploy.yml` | Déploie automatiquement sur Deno Deploy à chaque release |
+| File                           | Role                                                  |
+| ------------------------------ | ----------------------------------------------------- |
+| `.github/workflows/ci.yml`     | Runs tests, lint, and checks on every push            |
+| `.github/workflows/deploy.yml` | Automatically deploys to Deno Deploy on every release |
 
 ---
 
 ## 🔨 `ci.yml`
 
-Ce workflow est déclenché :
-✅ Sur chaque `pull_request` vers la branche `main`
+This workflow is triggered:
+✅ On every `pull_request` to the `main` branch
 
-Il réalise automatiquement :
+It automatically performs:
 
-* **Installation** des dépendances
-* **Linting** du projet (`deno lint`)
-* **Formatage** du code (`deno fmt`)
-* **Tests unitaires** (`deno test`)
-* **Génération d’un rapport JUnit** pour les outils CI/CD (si configuré)
+* **Installation** of dependencies
+* **Linting** the project (`deno lint`)
+* **Code formatting** (`deno fmt`)
+* **Unit tests** (`deno test`)
+* **Generation of a JUnit report** for CI/CD tools (if configured)
 
 ---
 
 ## 🚀 `deploy.yml`
 
-Ce workflow prend le relais pour **mettre en ligne** le projet.
+This workflow takes over to **put the project online**.
 
-✅ Déclenché uniquement lors des **releases GitHub** (`published`)
-✅ Déploie le projet sur [Deno Deploy](https://deno.com/deploy)
-✅ Utilise `deno deployctl` pour transférer le code
+✅ Triggered only on **GitHub releases** (`published`)
+✅ Deploys the project to [Deno Deploy](https://deno.com/deploy)
+✅ Uses `deno deployctl` to push the code
 
-> **Astuce** :
-> Assurez-vous que la variable `project` dans `deploy.yml` correspond exactement au nom configuré sur Deno Deploy.
-
----
-
-## ⚙️ Comment personnaliser ces workflows
-
-Si vous souhaitez :
-🔧 Ajouter des étapes (par exemple, analyser les vulnérabilités) → éditez les fichiers YAML.
-🔧 Modifier les déclencheurs (par exemple, sur d’autres branches) → changez les blocs `on:`.
-🔧 Intégrer d’autres services (par exemple, Docker, Slack) → ajoutez des actions GitHub adaptées.
-
-> **Bonnes pratiques** :
-> ✅ Commitez vos changements dans `.github/workflows/`
-> ✅ Documentez ici toute nouvelle automatisation ajoutée
-> ✅ Vérifiez bien les secrets et permissions utilisés
+> **Tip**:
+> Ensure that the `project` variable in `deploy.yml` exactly matches the name configured on Deno Deploy.
 
 ---
 
-## 📚 Ressources
+## ⚙️ How to customize these workflows
+
+If you want to:
+🔧 Add steps (e.g., vulnerability scanning) → edit the YAML files.
+🔧 Modify triggers (e.g., for other branches) → change the `on:` blocks.
+🔧 Integrate other services (e.g., Docker, Slack) → add the appropriate GitHub Actions.
+
+> **Best practices**:
+> ✅ Commit your changes in `.github/workflows/`
+> ✅ Document any new automation added here
+> ✅ Carefully check the secrets and permissions used
+
+---
+
+## 📚 Resources
 
 * [GitHub Actions](https://docs.github.com/actions)
 * [Deno Deploy](https://deno.com/deploy)
 * [deno deployctl](https://deno.com/deploy/docs/deployctl)
-
----
-
-Si tu veux, je peux aussi te générer un squelette prêt pour un nouveau workflow, déjà commenté, à intégrer dans `.github/workflows/`. Veux-tu que je le prépare ?

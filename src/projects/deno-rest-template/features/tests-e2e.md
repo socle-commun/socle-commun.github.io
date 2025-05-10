@@ -1,46 +1,47 @@
-# 🧪 Tests End-to-End (E2E)
+# 🧪 End-to-End (E2E) Tests
 
-Cette page documente les **tests end-to-end** réalisés pour valider le serveur Example Deno Server.
+This page documents the **end-to-end tests** used to validate the Example Deno Server.
 
-Elle explique :
-✅ Où se trouvent les fichiers de test  
-✅ Comment les lancer en local ou en CI  
-✅ Donne un exemple concret de test  
-✅ Propose des pistes pour écrire vos propres tests E2E
+It explains:
+✅ Where the test files are located
+✅ How to run them locally or in CI
+✅ A concrete test example
+✅ Tips for writing your own E2E tests
 
 ---
 
-## 📁 Emplacement
+## 📁 Location
 
-Les tests E2E sont situés ici :
+E2E tests are located here:
+
+```
+tests/e2e/
 ```
 
-tests/e2e/
+Key files:
 
-````
-
-Fichiers clés :
-| Fichier                   | Rôle                              |
-| ------------------------- | -------------------------------- |
-| `server.test.ts`          | Vérifie l'accès à la doc et aux pages de base |
-| `helper.ts`               | Démarre/arrête un serveur de test |
+| File             | Role                                   |
+| ---------------- | -------------------------------------- |
+| `server.test.ts` | Verifies access to docs and base pages |
+| `helper.ts`      | Starts/stops a test server             |
 
 ---
 
-## 🔨 Lancer les tests
+## 🔨 Running the tests
 
-En local :
+Locally:
+
 ```bash
 deno task test:dev
-````
+```
 
-Avec rapport de couverture :
+With coverage report:
 
 ```bash
 deno task test:dev:coverage
 ```
 
-En CI :
+In CI:
 
 ```bash
 deno task test:ci
@@ -48,9 +49,9 @@ deno task test:ci
 
 ---
 
-## 📦 Exemple de test existant
+## 📦 Example of an existing test
 
-Voici un extrait simplifié de `tests/e2e/server.test.ts` :
+Here’s a simplified snippet from `tests/e2e/server.test.ts`:
 
 ```ts
 import { startTestServer } from './helper.ts'
@@ -68,36 +69,32 @@ Deno.test('GET / responds with 404', async () => {
 })
 ```
 
-> 💡 **Remarque :** Chaque test démarre son propre serveur isolé grâce au helper `startTestServer()`.
+> 💡 **Note:** Each test launches its own isolated server using the `startTestServer()` helper.
 
 ---
 
-## ✨ Écrire vos propres tests
+## ✨ Writing your own tests
 
-Pour ajouter un nouveau test :
+To add a new test:
 
-1️⃣ Créez un fichier `.test.ts` dans `tests/e2e/`
-2️⃣ Utilisez le helper `startTestServer()` pour lancer le serveur local
-3️⃣ Effectuez vos appels HTTP avec `fetch()`
-4️⃣ Ajoutez des assertions (`if (...) throw new Error(...)`) pour valider les réponses
-5️⃣ N’oubliez pas d’arrêter le serveur (`await server.stop()` dans un bloc `finally`)
+1️⃣ Create a `.test.ts` file in `tests/e2e/`
+2️⃣ Use the `startTestServer()` helper to launch a local server
+3️⃣ Make HTTP calls using `fetch()`
+4️⃣ Add assertions (`if (...) throw new Error(...)`) to validate responses
+5️⃣ Don’t forget to stop the server (`await server.stop()` inside a `finally` block)
 
 ---
 
-## 📚 Ressources utiles
+## 📚 Useful resources
 
 * [Deno Testing](https://deno.land/manual@v1.38.4/testing)
 * [Hono Testing Guide](https://hono.dev/guides/testing)
-* [Fetch API](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API)
+* [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
 ---
 
-✅ **Bonnes pratiques :**
+✅ **Best practices:**
 
-* Testez les routes critiques (auth, erreurs, docs)
-* Vérifiez les statuts HTTP et les corps de réponse
-* Utilisez des noms clairs pour vos tests (`Deno.test('...', () => { ... })`)
-
-```
-
----
+* Test critical routes (auth, errors, docs)
+* Check HTTP status codes and response bodies
+* Use clear names for your tests (`Deno.test('...', () => { ... })`)

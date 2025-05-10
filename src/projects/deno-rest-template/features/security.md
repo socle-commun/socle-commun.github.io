@@ -1,81 +1,81 @@
-# Sécurité
+# 🔒 Security
 
-Cette page détaille les **mécanismes de sécurité** intégrés au serveur Example Deno Server.
+This page details the **security mechanisms** integrated into the Example Deno Server.
 
-Elle couvre :
-✅ Les protections via headers HTTP
-✅ L’authentification par token Bearer
-✅ Le contrôle du débit avec un rate limiter
-✅ Où et comment configurer les middlewares
+It covers:
+✅ Protections via HTTP headers
+✅ Bearer token authentication
+✅ Request throttling with a rate limiter
+✅ Where and how to configure the middlewares
 
-Vous découvrirez les middlewares utilisés, quand ils s’appliquent, et comment les personnaliser pour renforcer la robustesse de votre API.
-
----
-
-## 🛡️ Middleware principaux
-
-| Middleware            | Rôle                                  |
-| --------------------- | ------------------------------------- |
-| `security-headers.ts` | Ajoute les en-têtes HTTP sécurisés    |
-| `kv-rate-limiter.ts`  | Limite les requêtes par IP            |
-| `bearer-auth.ts`      | Vérifie le token `Bearer` (si activé) |
-
-> **Astuce** : Ces middlewares sont activés uniquement en production (`APP_ENV=production`), sauf l’authentification qui reste active partout.
+You will learn which middlewares are used, when they apply, and how to customize them to strengthen your API’s robustness.
 
 ---
 
-## ⚙️ Où sont configurés les middlewares ?
+## 🛡️ Main middlewares
 
-Tous les middlewares sont appliqués et paramétrés dans :
+| Middleware            | Role                                     |
+| --------------------- | ---------------------------------------- |
+| `security-headers.ts` | Adds secure HTTP headers                 |
+| `kv-rate-limiter.ts`  | Limits requests per IP                   |
+| `bearer-auth.ts`      | Verifies the `Bearer` token (if enabled) |
+
+> **Tip**: These middlewares are only active in production (`APP_ENV=production`), except for authentication, which remains active everywhere.
+
+---
+
+## ⚙️ Where are the middlewares configured?
+
+All middlewares are applied and configured in:
 **`src/app/rest/main.ts`**
 
-Dans ce fichier :
-✅ Les middlewares sont ajoutés globalement avec `app.use('*', middleware)`
-✅ Ils sont activés ou non selon l’environnement (`APP_ENV`)
-✅ Vous pouvez modifier leurs options directement dans ce fichier
+In this file:
+✅ Middlewares are globally added using `app.use('*', middleware)`
+✅ They are activated or deactivated depending on the environment (`APP_ENV`)
+✅ You can modify their options directly in this file
 
 ---
 
-### 📍 Exemple : changer la limite du rate limiter
+### 📍 Example: Change the rate limiter limit
 
-Dans `main.ts` :
+In `main.ts`:
 
 ```ts
 app.use('*', kvRateLimiter({
-    max: 100,          // ← changez ici (par exemple 200)
-    windowMs: 60000,   // ← changez ici pour une autre fenêtre (par exemple 5 min → 300000)
+    max: 100,          // ← change here (e.g., to 200)
+    windowMs: 60000,   // ← change here for a different window (e.g., 5 min → 300000)
 }) as any)
 ```
 
 ---
 
-### 📍 Exemple : modifier les origines autorisées (CORS)
+### 📍 Example: Modify allowed origins (CORS)
 
-Toujours dans `main.ts` :
+Also in `main.ts`:
 
 ```ts
 app.use('*', cors({
-    origin: ['https://monapp.com', 'https://autre-domaine.com'],
+    origin: ['https://myapp.com', 'https://other-domain.com'],
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE'],
 }))
 ```
 
 ---
 
-✅ **Bonnes pratiques :**
+✅ **Best practices:**
 
-* Placez les middlewares sensibles (auth, headers, rate limit) avant vos routes pour garantir une couverture complète.
-* Documentez tout changement dans ce fichier et dans la doc projet.
-* Testez bien en local avant de déployer en prod.
+* Place sensitive middlewares (auth, headers, rate limit) before your routes to ensure full coverage.
+* Document any changes in this file and in the project docs.
+* Always test locally before deploying to production.
 
 ---
 
-## 📚 Ressources
+## 📚 Resources
 
 * [Hono Middleware](https://hono.dev/middleware)
 * [Deno KV](https://deno.land/manual@v1.38.4/runtime/kv_api)
-* [CORS](https://developer.mozilla.org/fr/docs/Web/HTTP/CORS)
+* [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 ---
 
-Voir aussi : [Variables d’environnement](./env.md)
+See also: [Environment Variables](./env.md)

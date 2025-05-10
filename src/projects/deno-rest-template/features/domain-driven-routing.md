@@ -1,43 +1,43 @@
 # 🏗️ Domain Driven Routing
 
-## 📌 Objectif
+## 📌 Objective
 
-La **Domain Driven Routing (DDR)** est une approche architecturale qui organise les routes API non pas par simple regroupement technique (fichiers, endpoints), mais par **domaine métier**.
-Elle permet de structurer une API de manière modulaire, évolutive, et alignée avec les concepts métier.
-
----
-
-## 🚀 Pourquoi l’adopter ?
-
-✅ Facilite la maintenance : chaque domaine est indépendant et auto-contenu.
-✅ Clarifie l’organisation : fini les gros fichiers de routes mêlées, chaque domaine porte son sens métier.
-✅ Simplifie l’extension : on peut ajouter ou retirer un domaine sans toucher au cœur de l’application.
-✅ Renforce la documentation : chaque domaine peut être documenté et exporté individuellement.
-✅ Prépare une montée en complexité : permet d’introduire plus tard des middlewares spécifiques, des permissions ou des dépendances locales.
+**Domain Driven Routing (DDR)** is an architectural approach that organizes API routes not just by technical grouping (files, endpoints) but by **business domain**.
+It enables structuring an API in a modular, scalable way, aligned with business concepts.
 
 ---
 
-## 🏗️ Comment ça fonctionne dans ce projet
+## 🚀 Why adopt it?
 
-| Élément clé         | Rôle                                                                                    |
-| ------------------- | --------------------------------------------------------------------------------------- |
-| `Domain` (classe)   | Représente un module métier complet : nom, description, liste de routes.                |
-| `Route` (classe)    | Représente une route unique, avec son schéma, son handler, ses requêtes/réponses.       |
-| `$AppRest` (entrée) | Point d’entrée global qui découvre dynamiquement les domaines et les branche dans Hono. |
+✅ Eases maintenance: each domain is independent and self-contained.
+✅ Clarifies organization: no more giant mixed route files — each domain carries clear business meaning.
+✅ Simplifies extension: you can add or remove a domain without touching the application core.
+✅ Strengthens documentation: each domain can be documented and exported individually.
+✅ Prepares for future complexity: allows later introduction of domain-specific middlewares, permissions, or local dependencies.
 
 ---
 
-## 📂 Structure d’un domaine
+## 🏗️ How it works in this project
 
-Un domaine est défini dans un dossier :
+| Key element        | Role                                                                            |
+| ------------------ | ------------------------------------------------------------------------------- |
+| `Domain` (class)   | Represents a complete business module: name, description, list of routes.       |
+| `Route` (class)    | Represents a single route, with schema, handler, requests/responses.            |
+| `$AppRest` (entry) | Global entry point that dynamically discovers domains and plugs them into Hono. |
+
+---
+
+## 📂 Domain structure
+
+A domain is defined in a folder:
 
 ```
-/src/app/rest/domains/{domaine}/mod.ts
+/src/app/rest/domains/{domain}/mod.ts
 ```
 
-Exemple : `/src/app/rest/domains/health/mod.ts`
+Example: `/src/app/rest/domains/health/mod.ts`
 
-Contenu type :
+Typical content:
 
 ```ts
 import { Domain } from '@/ext/sloth/apps/rest/domain-factory.ts';
@@ -52,41 +52,41 @@ export default async () => {
 
 ---
 
-## ⚙️ Fonctionnement global
+## ⚙️ Global operation
 
-Dans `$AppRest` :
+In `$AppRest`:
 
-1. Tous les fichiers `mod.ts` sous `/domains` sont automatiquement importés.
-2. Chaque fichier doit retourner une promesse `Promise<Domain>`.
-3. Le framework :
+1. All `mod.ts` files under `/domains` are automatically imported.
+2. Each file must return a `Promise<Domain>`.
+3. The framework:
 
-   * Enregistre toutes les routes dans `app.openapi()`.
-   * Génère les métadonnées OpenAPI à partir des domaines (tags, descriptions).
-   * Connecte les middlewares globaux (auth, CORS, sécurité).
-
----
-
-## 🌟 Bonnes pratiques
-
-✅ Toujours donner un nom et une description clairs au domaine.
-✅ Organiser les schémas Zod localement à chaque domaine.
-✅ Ne pas mélanger la logique des domaines : un domaine = un métier.
-✅ Documenter les endpoints directement dans les métadonnées du domaine.
-✅ Prévoir les extensions futures (middlewares spécifiques, permissions).
+   * Registers all routes into `app.openapi()`.
+   * Generates OpenAPI metadata from domains (tags, descriptions).
+   * Connects global middlewares (auth, CORS, security).
 
 ---
 
-## 🔮 Extensions futures possibles
+## 🌟 Best practices
 
-| Idée                                    | Bénéfice                                       |
-| --------------------------------------- | ---------------------------------------------- |
-| Génération de docs Markdown par domaine | Documenter chaque domaine en dehors d’OpenAPI. |
-| Export complet OpenAPI (JSON/YAML)      | Générer des clients automatiques, CI/CD.       |
-| Middlewares locaux par domaine          | Renforcer la sécurité et l’isolation métier.   |
-| Gestion d’événements (audit, hooks)     | Ajouter des actions globales ou locales.       |
+✅ Always provide a clear name and description for the domain.
+✅ Organize Zod schemas locally within each domain.
+✅ Do not mix domain logic: one domain = one business unit.
+✅ Document endpoints directly in the domain’s metadata.
+✅ Plan for future extensions (specific middlewares, permissions).
+
+---
+
+## 🔮 Possible future extensions
+
+| Idea                              | Benefit                                        |
+| --------------------------------- | ---------------------------------------------- |
+| Generate Markdown docs per domain | Document each domain outside OpenAPI.          |
+| Full OpenAPI export (JSON/YAML)   | Generate automatic clients, CI/CD integration. |
+| Local middlewares per domain      | Strengthen security and business isolation.    |
+| Event management (audit, hooks)   | Add global or local actions.                   |
 
 ---
 
 ## 🧩 Conclusion
 
-La **Domain Driven Routing** transforme votre API en une architecture modulaire, robuste et extensible, prête à évoluer avec les besoins métier. Elle s’appuie sur des conventions fortes mais simples, tout en restant légère et adaptée à l’univers Deno + Hono.
+**Domain Driven Routing** transforms your API into a modular, robust, and extensible architecture, ready to evolve with business needs. It relies on strong yet simple conventions while staying lightweight and tailored for the Deno + Hono ecosystem.
