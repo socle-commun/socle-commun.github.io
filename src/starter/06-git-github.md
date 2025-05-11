@@ -144,4 +144,3 @@ git push
 
 Now that your code is versioned and online, we’ll see how to **write automated tests** to check it works — even when you’re not looking!
 
-👉 [Go to Chapter 7: Writing Your First Tests](./07-first-tests.md)
