@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { withMermaid } from "vitepress-plugin-mermaid";
-import { withMagic } from './with-magic';
+import withMagic from './with-magic';
 
 // https://vitepress.dev/reference/site-config
 export default withMagic(withMermaid(defineConfig({

@@ -8,7 +8,7 @@ import path from 'path';
  * @param {object} config - The base VitePress configuration.
  * @returns {object} - The extended configuration with auto-generated nav/sidebar.
  */
-export function withMagic(config) {
+export default function (config) {
   const srcRoot = path.resolve(process.cwd(), config.srcDir || './src');
 
   const navItems = [];    // Holds top-level nav menu items.
